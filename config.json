@@ -1,13 +1,20 @@
 {
     "api": {
-        "clien-access-token": "Fill in this field"
+        "client-access-token": "Fill in this field"
     },
 
     "image": {
         "saturation": 0.5,
         "lightness": 255,
+        "size": [ 2500, 2500 ]
+    },
 
-        "size": [ 2500, 2500 ],
+    "text": {
+        "color": "white",
+        "size": 125,
+        "space-between-lines": 25,
         "padding": [ 100, 100 ]
     }
+
+
 }
