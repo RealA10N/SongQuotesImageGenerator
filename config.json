@@ -41,7 +41,7 @@
         "text": {
             "color": "black",
             "size": 100,
-            "font-path": "fonts/JackInput.ttf",
+            "font-path": "fonts/DryBrush.ttf",
             "space-between-lines": 0,
             "padding": [ 100, 100 ],
             "max-width-percentage": 0.6
@@ -49,8 +49,8 @@
 
         "desc": {
             "color": "grey",
-            "size":  40,
-            "font-path": "fonts/JackInput.ttf"
+            "size":  60,
+            "font-path": "fonts/AppleGaramond-LightItalic.ttf"
         }
     }
 
