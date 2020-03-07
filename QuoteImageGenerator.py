@@ -1,26 +1,43 @@
-from TextImageGenerator import TextImageGenerator
+from TextImageGenerator import _BasicTextImage, ColoredTextImage, BlackTextImage
 from PIL import Image, ImageDraw, ImageFont
+import lyricsgenius
 
 
-class QuoteImageGenerator(TextImageGenerator):
+class _BasicQuoteImage(_BasicTextImage):
 
     def __init__(self, text):
-        super().__init__()
+        super().__init__(text)
 
-    def fancy_text(self, text):
-    
-        text = text.lower()              # makes all lowercase
+        self.text = text
 
-        text = text.replace("\r",". ")   # remove new lines
-        text = text.replace("\n",". ")
+        genius = lyricsgenius.Genius(self._config["api"]["client-access-token"], verbose=False)
+        song = genius.search_song(self.text)        
+        self.desc = '"' + song.title + '" by ' + song.artist
 
-        text = " ".join(text.split())    # remove whitespaces
+        self._desc_font = ImageFont.truetype(
+            self._config[self._version]["desc-text"]["font-path"],
+            size = self._config[self._version]["desc-text"]["size"])
 
-        if text[0] != '"':               # add " (quotes) and . (dots)
-            text = '"' + text
-        if text[-1] != '"' and text[-2] != '"':
-            text += '"'
-        if text[-2] != ".":
-            text = text[:-2] + '."'
+    def get_full_image(self):
+        self.add_text(self.text)
+        self.add_credit()
+        return self.get_image()
 
-        return text
+
+class BlackQuoteImage(_BasicQuoteImage, BlackTextImage):
+
+    def add_credit(self):
+        starting_y = self._config[self._version]["image"]["size"][1]
+        starting_y += self._text_height
+        starting_y /= 2
+        starting_y += self._config[self._version]["text"]["padding"][1]
+
+        starting_x = self._config[self._version]["image"]["size"][0] - self._draw_image.textsize(self.desc, self._desc_font)[0]
+        starting_x /= 2
+
+        self._draw_image.text(
+            (int(starting_x), int(starting_y)),
+            self.desc,
+            font=self._desc_font,
+            fill=self._config[self._version]["desc-text"]["color"])
+
