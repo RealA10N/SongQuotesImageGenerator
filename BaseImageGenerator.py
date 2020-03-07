@@ -8,7 +8,7 @@ class BaseImageGenerator:
 
     def __init__(self):      
 
-        _base_image = None
+        self._image = None
 
         with open("config.json") as config_file:
             self._config = json.load(config_file)
@@ -34,17 +34,17 @@ class BaseImageGenerator:
 
     # BASE IMAGE
 
-    def get_base_image(self, hue=None):
+    def get_image(self, hue=None):
         
-        if hue is not None or self._base_image is None:
+        if hue is not None or self._image is None:
         # if given a custom hue or image is not generated yet
-            self._generate_base_image(hue)
+            self._generate_image(hue)
         
-        return self._base_image
+        return self._image
 
 
-    def _generate_base_image(self, hue):
-        self._base_image = Image.new(
+    def _generate_image(self, hue):
+        self._image = Image.new(
             mode = "RGB",
             size = self._config["image"]["size"],
             color = self.get_background_color(hue))
