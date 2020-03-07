@@ -1,4 +1,5 @@
 {
+
     "api": {
         "client-access-token": "Fill in this field"
     },
@@ -15,6 +16,5 @@
         "space-between-lines": 25,
         "padding": [ 100, 100 ]
     }
-
 
 }
