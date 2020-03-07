@@ -8,6 +8,8 @@ def load_config():
 
     with open("config.json") as config_file:
         config = json.load(config_file)
+    
+    return config
 
 
 def generate_background_color(config=load_config()):
