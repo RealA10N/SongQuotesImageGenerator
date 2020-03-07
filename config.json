@@ -7,8 +7,8 @@
 
     "colored-version": {
         "image": {
-            "saturation": 0.5,
-            "lightness": 255,
+            "saturation": 0.75,
+            "lightness": 225,
             "size": [ 2500, 2500 ]
         },
     
@@ -18,7 +18,16 @@
             "font-path": "fonts/Cocogoose-Classic-Medium.ttf",
             "space-between-lines": 0,
             "padding": [ 100, 100 ],
-            "max-width-percentage": 0.75
+            "max-width-percentage": 0.8
+        },
+
+        "desc": {
+            "color": "white",
+            "font-path": "fonts/Cocogoose-Classic-Medium.ttf",
+            "size":  175,
+            "space-between-lines": 0,
+            "shadow-color": "black",
+            "shadow-size": [ 25, 25 ]
         }
     },
 
@@ -37,9 +46,9 @@
             "max-width-percentage": 0.6
         },
 
-        "desc-text": {
+        "desc": {
             "color": "grey",
-            "size":  60,
+            "size":  40,
             "font-path": "fonts/DAYROM.ttf"
         }
     }
