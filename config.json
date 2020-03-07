@@ -4,18 +4,39 @@
         "client-access-token": "Fill in this field"
     },
 
-    "image": {
-        "saturation": 0.5,
-        "lightness": 255,
-        "size": [ 2500, 2500 ]
+
+    "colored-version": {
+        "image": {
+            "saturation": 0.5,
+            "lightness": 255,
+            "size": [ 2500, 2500 ]
+        },
+    
+        "text": {
+            "color": "white",
+            "size": 175,
+            "font-path": "fonts/Cocogoose-Classic-Medium.ttf",
+            "space-between-lines": 0,
+            "padding": [ 100, 100 ],
+            "max-width-percentage": 0.75
+        }
     },
 
-    "text": {
-        "color": "white",
-        "size": 175,
-        "space-between-lines": 0,
-        "padding": [ 100, 100 ],
-        "max-width-percentage": 0.75
+    "black-version": {
+        "image": {
+            "color": "white",
+            "size": [ 2500, 2500]
+        },
+
+        "text": {
+            "color": "black",
+            "size": 175,
+            "font-path": "fonts/Afterglow-Regular.ttf",
+            "space-between-lines": 0,
+            "padding": 100,
+            "max-width-percentage": 0.6
+        }
     }
+
 
 }
