@@ -1,10 +1,11 @@
 import click
 import QuoteImageGenerator
 import os
+import threading
 
 @click.command()
 
-@click.option('--quote', '--quotes' ,'-q', prompt=True, required=True, multiple=True,
+@click.option('--quote', '--quotes' ,'-q', required=True, multiple=True,
               type=str, help="Image quote.")
 
 @click.option('--style', '-s', required=False, default="colored",
@@ -30,7 +31,9 @@ import os
 def main(quote, style, shuffle_styles, name, dir, save, show):
     '''Generates image or a list of images from a given quote or quotes.'''
 
-    for quote_index, cur_quote in enumerate(quote): 
+    threads = []
+
+    for quote_index, cur_quote in enumerate(quote):
 
         # selecting image style
         if style == "colored":
@@ -44,21 +47,31 @@ def main(quote, style, shuffle_styles, name, dir, save, show):
             else:
                 generator_class = QuoteImageGenerator.ColoredQuoteImage
 
-
-        # generating image    
-        generetor = generator_class(cur_quote)
-        image = generetor.get_full_image()
-
-        # saving generated image
+        # getting path of generated image
         if save:
             if dir is None:
                 dir = os.getcwd()
-            
+            cur_name = name
             if quote_index != 0:
-                cur_name = name + str(quote_index + 1)
+                cur_name += str(quote_index + 1)
+            path = os.path.join(dir, cur_name + ".png")
+        else:
+            path = None
 
-            image.save(os.path.join(dir, cur_name + ".png"))
+        threads.append(threading.Thread(target=_generate_image, args=(cur_quote, generator_class, path, show, )))
+        threads[-1].start()
 
-        # showing image popup
-        if show:
-            image.show()
+
+def _generate_image(quote, generator_class, path, show):
+
+    # generating image    
+    generetor = generator_class(quote)
+    image = generetor.get_full_image()
+
+    # saving image
+    if path is not None:
+        image.save(path)
+
+    # showing image popup
+    if show:
+        image.show()
