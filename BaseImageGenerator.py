@@ -4,11 +4,12 @@ from PIL import Image
 import random
 
 
-class BaseImageGenerator:
+class BaseImage:
 
     def __init__(self):      
 
         self._image = None
+        self._version = "colored-version"
 
         with open("config.json") as config_file:
             self._config = json.load(config_file)
@@ -20,9 +21,9 @@ class BaseImageGenerator:
             hue = random.random()
 
         color = colorsys.hsv_to_rgb(
-            hue,                                 # hue
-            self._config["image"]["saturation"], # saturation
-            self._config["image"]["lightness"])  # lightness, brightness
+            hue,                                                # hue
+            self._config[self._version]["image"]["saturation"], # saturation
+            self._config[self._version]["image"]["lightness"])  # lightness, brightness
 
         # Convert to int from float
         color = list(color)
@@ -46,5 +47,20 @@ class BaseImageGenerator:
     def _generate_image(self, hue):
         self._image = Image.new(
             mode = "RGB",
-            size = self._config["image"]["size"],
+            size = self._config[self._version]["image"]["size"],
             color = self.get_background_color(hue))
+
+
+class BlackBaseImage(BaseImage):
+    
+    def __init__(self):
+        super().__init__()
+        self._version = "black-version"
+
+
+    def get_background_color(self, *args):
+        return self._config[self._version]["image"]["color"]
+
+if __name__ == "__main__":
+    y = BlackBaseImage()
+    y.get_image().show()
