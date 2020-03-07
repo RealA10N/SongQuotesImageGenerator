@@ -61,6 +61,3 @@ class BlackBaseImage(ColoredBaseImage):
     def get_background_color(self, *args):
         return self._config[self._version]["image"]["color"]
 
-if __name__ == "__main__":
-    y = BlackBaseImage()
-    y.get_image().show()

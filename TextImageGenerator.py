@@ -71,10 +71,6 @@ class _BasicTextImage(ColoredBaseImage):
 
 class ColoredTextImage(_BasicTextImage, ColoredBaseImage):
 
-    def __init__(self):
-        super().__init__()
-
-
     def _draw_line(self, text, line_num=0):
         
         x = self._config[self._version]["text"]["padding"][0]
