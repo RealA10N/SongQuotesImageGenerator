@@ -4,7 +4,7 @@ from PIL import Image
 import random
 
 
-class BaseImage:
+class ColoredBaseImage:
 
     def __init__(self):      
 
@@ -51,7 +51,7 @@ class BaseImage:
             color = self.get_background_color(hue))
 
 
-class BlackBaseImage(BaseImage):
+class BlackBaseImage(ColoredBaseImage):
     
     def __init__(self):
         super().__init__()

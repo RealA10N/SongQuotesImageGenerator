@@ -1,7 +1,7 @@
 {
 
     "api": {
-        "client-access-token": "Fill in this field"
+        "client-access-token": "B0NSA3jwkhSTJa3lm7UmMgXrG5NtwvrIUyQSY2UxaPZiOpg-uRddcWF_XQWOtmu2"
     },
 
 
@@ -30,11 +30,17 @@
 
         "text": {
             "color": "black",
-            "size": 175,
-            "font-path": "fonts/Afterglow-Regular.ttf",
+            "size": 100,
+            "font-path": "fonts/DAYROM.ttf",
             "space-between-lines": 0,
-            "padding": 100,
+            "padding": [ 100, 100 ],
             "max-width-percentage": 0.6
+        },
+
+        "desc-text": {
+            "color": "grey",
+            "size":  60,
+            "font-path": "fonts/DAYROM.ttf"
         }
     }
 
